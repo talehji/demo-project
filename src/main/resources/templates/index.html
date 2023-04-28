@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>ARIS Demo</title>
 </head>
 <body>
 <h1>This project is demo for test jenkins</h1>
+<div>
+    <form th:action="@{/todo-save}" method="post">
+        <label>Enter your todo</label>
+        <input name="name" type="text">
+        <button type="submit">Submit</button>
+    </form>
+</div>
+<div style="padding-top: 50px">
+    <table>
+        <thead>
+            <tr>
+                <th style="min-width: 200px">Todo</th>
+                <th>Created at</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr th:each="data : ${dataList}">
+            <td style="min-width: 200px" th:text="${data.getName()}"></td>
+            <td th:text="${data.getCreatedAt()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
